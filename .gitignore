@@ -1,0 +1,106 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ambientes virtuais
+venv/
+.env/
+.venv/
+
+# =========================
+# Jupyter Notebook
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# VS Code / IDE
+# =========================
+.vscode/
+.idea/
+
+# =========================
+# Sistema operacional
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# Arquivos temporários
+# =========================
+tmp/
+temp/
+
+# =========================
+# Dados grandes do projeto
+# =========================
+
+# Dados brutos
+#data/dados_bruto/
+
+# Dados intermediários
+#data/dados_intermediarios/
+
+# Dados convertidos
+#data/dados_convertidos/
+
+# Dados tratados
+#data/dados_tratados/
+
+# =========================
+# Arquivos pesados
+# =========================
+#*.csv
+#*.dbf
+#*.xlsx
+#*.parquet
+
+# =========================
+# Arquivos compactados
+# =========================
+*.zip
+*.rar
+*.7z
+*.tar.gz
+
+# =========================
+# Modelos e cache
+# =========================
+*.pkl
+*.joblib
+.cache/
+
+# =========================
+# Arquivos de saída
+# =========================
+outputs/
+resultados/
+export/
+
+# =========================
+# Streamlit / Dash
+# =========================
+.streamlit/
+
+# =========================
+# Pytest
+# =========================
+.pytest_cache/
+
+# =========================
+# Coverage
+# =========================
+htmlcov/
+.coverage
+
+# =========================
+# Arquivos do sistema Git
+# =========================
+*.orig

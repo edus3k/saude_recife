@@ -65,10 +65,10 @@ temp/
 # =========================
 # Arquivos compactados
 # =========================
-*.zip
-*.rar
-*.7z
-*.tar.gz
+#*.zip
+#*.rar
+#*.7z
+#*.tar.gz
 
 # =========================
 # Modelos e cache

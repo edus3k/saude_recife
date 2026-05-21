@@ -8,3 +8,8 @@ seaborn
 plotly
 geopandas
 scikit-learn
+
+streamlit 
+duckdb
+pyarrow
+plotly

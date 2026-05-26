@@ -1,6 +1,5 @@
 pandas
 dbfread
-
 openpyxl
 numpy
 matplotlib
@@ -8,8 +7,7 @@ seaborn
 plotly
 geopandas
 scikit-learn
-
-streamlit 
+streamlit
 duckdb
 pyarrow
 plotly

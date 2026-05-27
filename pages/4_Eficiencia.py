@@ -318,22 +318,18 @@ st.markdown("---")
 
 st.subheader("🏆 Ranking de Eficiência")
 
-st.markdown("""
-### 📌 O que este gráfico representa?
-
-Este gráfico apresenta o ranking das unidades de saúde
-com melhor desempenho operacional.
+st.info("""
+📌 Este gráfico apresenta as unidades com melhor eficiência operacional.
 
 A análise considera:
-- produtividade das equipes
-- quantidade de atendimentos
-- score de qualidade operacional
+- produtividade assistencial
+- qualidade operacional
+- volume de atendimentos
+- desempenho das equipes
 
-### ✅ Conclusão Resumida
-
-As unidades com maiores scores demonstram melhor
-equilíbrio entre produtividade e qualidade assistencial.
-Valores elevados indicam maior eficiência operacional.
+Conclusão resumida:
+Unidades com maiores scores apresentam melhor equilíbrio
+entre produtividade e qualidade assistencial.
 """)
 
 ranking = (
@@ -419,6 +415,39 @@ st.plotly_chart(
     use_container_width=True
 )
 
+st.markdown("""
+### 📖 Detalhamento do Gráfico
+
+#### ✅ Indicador analisado
+Score médio de eficiência operacional das unidades.
+
+#### ✅ Cálculo utilizado
+- Métrica principal: `score_eficiencia`
+- Função aplicada: `MEAN()`
+
+#### ✅ O que significa MEAN()
+A função `MEAN()` calcula a média dos valores.
+
+Exemplo:
+- Unidade A → 70
+- Unidade B → 80
+- Unidade C → 90
+
+Resultado:
+(70 + 80 + 90) ÷ 3 = 80
+
+#### ✅ Como interpretar
+- Barras maiores representam melhor eficiência.
+- Scores elevados indicam maior produtividade operacional.
+- Valores baixos podem indicar sobrecarga.
+
+#### ✅ Ferramentas Python utilizadas
+- Pandas
+- Plotly Express
+- Streamlit
+- DuckDB
+""")
+
 # ============================================
 # PRODUTIVIDADE
 # ============================================
@@ -427,17 +456,13 @@ st.markdown("---")
 
 st.subheader("👨‍⚕️ Atendimento por Profissional")
 
-st.markdown("""
-### 📌 O que este gráfico representa?
+st.info("""
+📌 O gráfico apresenta a média de atendimentos
+realizados por profissional em cada unidade.
 
-Mostra a média de atendimentos realizados
-por profissional em cada unidade de saúde.
-
-### ✅ Conclusão Resumida
-
-Unidades com maior produtividade possuem maior
-capacidade operacional. Valores excessivamente altos
-podem indicar sobrecarga das equipes.
+Conclusão resumida:
+Valores elevados representam maior produtividade,
+porém níveis excessivos podem indicar sobrecarga.
 """)
 
 produtividade = (
@@ -507,6 +532,29 @@ st.plotly_chart(
     use_container_width=True
 )
 
+st.markdown("""
+### 📖 Detalhamento do Gráfico
+
+#### ✅ Indicador analisado
+Produtividade média assistencial por profissional.
+
+#### ✅ Cálculo utilizado
+- Métrica principal: `atendimento_por_profissional`
+- Fórmula:
+`total_atendimentos / total_profissionais`
+
+#### ✅ Como interpretar
+- Barras maiores indicam maior produtividade.
+- Valores elevados podem indicar sobrecarga.
+- Auxilia na análise da distribuição operacional.
+
+#### ✅ Ferramentas Python utilizadas
+- Pandas
+- Plotly Express
+- Streamlit
+- DuckDB
+""")
+
 # ============================================
 # CORRELAÇÃO
 # ============================================
@@ -515,22 +563,14 @@ st.markdown("---")
 
 st.subheader("📈 Correlação Operacional")
 
-st.markdown("""
-### 📌 O que este gráfico representa?
-
-Este gráfico relaciona:
-- quantidade de profissionais
+st.info("""
+📌 O gráfico relaciona:
+- profissionais
 - eficiência operacional
-- volume de atendimentos
 - qualidade assistencial
+- volume de atendimentos
 
 Cada bolha representa uma unidade de saúde.
-
-### ✅ Conclusão Resumida
-
-Unidades com maior estrutura profissional tendem
-a apresentar maior estabilidade operacional.
-Bolhas maiores representam maior volume assistencial.
 """)
 
 fig3 = px.scatter(
@@ -570,6 +610,30 @@ st.plotly_chart(
     use_container_width=True
 )
 
+st.markdown("""
+### 📖 Detalhamento do Gráfico
+
+#### ✅ Indicador analisado
+Relação entre profissionais e eficiência operacional.
+
+#### ✅ Cálculo utilizado
+- Eixo X → `total_profissionais`
+- Eixo Y → `score_eficiencia`
+- Tamanho → `total_atendimentos`
+- Cor → `score_qualidade`
+
+#### ✅ Como interpretar
+- Bolhas maiores representam maior demanda.
+- Pontos mais altos indicam maior eficiência.
+- Cores mais intensas indicam maior score de qualidade.
+
+#### ✅ Ferramentas Python utilizadas
+- Pandas
+- Plotly Express
+- Streamlit
+- DuckDB
+""")
+
 # ============================================
 # EVOLUÇÃO TEMPORAL
 # ============================================
@@ -578,17 +642,13 @@ st.markdown("---")
 
 st.subheader("📅 Evolução da Eficiência")
 
-st.markdown("""
-### 📌 O que este gráfico representa?
+st.info("""
+📌 O gráfico apresenta a evolução temporal
+da eficiência operacional média.
 
-Mostra a evolução temporal média
-do score de eficiência operacional.
-
-### ✅ Conclusão Resumida
-
-O gráfico permite identificar tendências
-de crescimento ou queda da eficiência
-ao longo dos períodos analisados.
+Conclusão resumida:
+Permite identificar crescimento ou redução
+da eficiência ao longo do tempo.
 """)
 
 evolucao = (
@@ -656,6 +716,35 @@ st.plotly_chart(
     fig4,
     use_container_width=True
 )
+
+st.markdown("""
+### 📖 Detalhamento do Gráfico
+
+#### ✅ Indicador analisado
+Evolução média da eficiência operacional.
+
+#### ✅ Cálculo utilizado
+- Métrica principal: `score_eficiencia`
+- Função aplicada: `MEAN()`
+- Agrupamento: Ano e Mês
+
+#### ✅ Como interpretar
+- Crescimento da linha indica melhora operacional.
+- Queda da linha pode indicar aumento de pressão assistencial.
+- Auxilia no acompanhamento temporal dos indicadores.
+
+#### ✅ Ferramentas Python utilizadas
+- Pandas
+- Plotly Express
+- Streamlit
+- DuckDB
+""")
+
+# ============================================
+# GLOSSÁRIO SQL E PANDAS
+# ============================================
+
+st.markdown("---")
 
 # ============================================
 # RESUMO EXECUTIVO

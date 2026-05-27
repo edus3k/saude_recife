@@ -304,23 +304,13 @@ st.markdown("---")
 
 st.subheader("🚨 Ranking de Sobrecarga")
 
-st.markdown("""
-### 📌 O que este gráfico representa?
-
-Este gráfico apresenta as unidades com maior
+st.info("""
+📌 Este gráfico apresenta as unidades com maior
 nível de sobrecarga operacional.
 
-O cálculo considera:
-- pacientes por médico
-- pressão sobre os leitos
-- tempo médio de espera
-
-### ✅ Conclusão Resumida
-
+Conclusão resumida:
 Unidades com maiores índices apresentam maior
 risco operacional e possível superlotação.
-Valores elevados indicam necessidade de reforço
-estrutural e assistencial.
 """)
 
 ranking = (
@@ -406,6 +396,36 @@ st.plotly_chart(
     use_container_width=True
 )
 
+st.markdown("""
+### 📖 Detalhamento do Gráfico
+
+#### ✅ Indicador analisado
+Índice médio de sobrecarga operacional das unidades.
+
+#### ✅ Cálculo utilizado
+- Métrica principal: `indice_sobrecarga`
+- Função aplicada: `MEAN()`
+
+#### ✅ Fórmula utilizada
+
+Índice calculado com base em:
+
+- pacientes por médico
+- pressão sobre leitos
+- tempo médio de espera
+
+#### ✅ Como interpretar
+- Barras maiores representam maior criticidade operacional.
+- Valores elevados indicam maior risco de superlotação.
+- Auxilia na identificação de gargalos assistenciais.
+
+#### ✅ Ferramentas utilizadas
+- Pandas
+- Plotly Express
+- Streamlit
+- DuckDB
+""")
+
 # ============================================
 # PRESSÃO LEITOS
 # ============================================
@@ -414,17 +434,13 @@ st.markdown("---")
 
 st.subheader("🛏️ Pressão sobre Leitos")
 
-st.markdown("""
-### 📌 O que este gráfico representa?
+st.info("""
+📌 O gráfico apresenta a pressão assistencial
+sobre a estrutura hospitalar disponível.
 
-Mostra a pressão assistencial sobre os leitos
-disponíveis nas unidades de saúde.
-
-### ✅ Conclusão Resumida
-
-Unidades com maiores valores apresentam maior
-ocupação estrutural e maior risco de saturação
-hospitalar.
+Conclusão resumida:
+Valores elevados podem representar maior
+risco de saturação hospitalar.
 """)
 
 pressao = (
@@ -494,6 +510,28 @@ st.plotly_chart(
     use_container_width=True
 )
 
+st.markdown("""
+### 📖 Detalhamento do Gráfico
+
+#### ✅ Indicador analisado
+Nível de utilização da estrutura hospitalar.
+
+#### ✅ Cálculo utilizado
+- Métrica principal: `pressao_leitos`
+- Função aplicada: `MEAN()`
+
+#### ✅ Como interpretar
+- Barras maiores indicam maior ocupação estrutural.
+- Valores altos representam maior pressão operacional.
+- Auxilia no planejamento hospitalar.
+
+#### ✅ Ferramentas utilizadas
+- Pandas
+- Plotly Express
+- Streamlit
+- DuckDB
+""")
+
 # ============================================
 # TEMPO ESPERA
 # ============================================
@@ -502,17 +540,12 @@ st.markdown("---")
 
 st.subheader("⏱️ Tempo Médio de Espera")
 
-st.markdown("""
-### 📌 O que este gráfico representa?
+st.info("""
+📌 Este gráfico representa a estimativa média
+de espera assistencial nas unidades.
 
-Apresenta a estimativa média do tempo
-de espera nas unidades de saúde.
-
-### ✅ Conclusão Resumida
-
-Tempos elevados podem representar maior
-sobrecarga operacional e dificuldade
-na capacidade de atendimento.
+Conclusão resumida:
+Tempos elevados indicam maior pressão operacional.
 """)
 
 espera = (
@@ -582,6 +615,28 @@ st.plotly_chart(
     use_container_width=True
 )
 
+st.markdown("""
+### 📖 Detalhamento do Gráfico
+
+#### ✅ Indicador analisado
+Tempo médio estimado de espera.
+
+#### ✅ Cálculo utilizado
+- Métrica principal: `tempo_espera`
+- Função aplicada: `MEAN()`
+
+#### ✅ Como interpretar
+- Barras maiores representam maior espera assistencial.
+- Valores elevados podem indicar sobrecarga.
+- Auxilia na análise de eficiência operacional.
+
+#### ✅ Ferramentas utilizadas
+- Pandas
+- Plotly Express
+- Streamlit
+- DuckDB
+""")
+
 # ============================================
 # MAPA CORRELAÇÃO
 # ============================================
@@ -590,22 +645,16 @@ st.markdown("---")
 
 st.subheader("📈 Correlação Operacional")
 
-st.markdown("""
-### 📌 O que este gráfico representa?
-
-Relaciona:
-- volume de atendimentos
-- índice de sobrecarga
-- tempo de espera
+st.info("""
+📌 Este gráfico relaciona:
+- atendimentos
+- sobrecarga operacional
 - pressão estrutural
+- tempo de espera
 
-Cada bolha representa uma unidade de saúde.
-
-### ✅ Conclusão Resumida
-
-Unidades com maior demanda tendem a apresentar
-maior criticidade operacional e maior tempo
-de espera assistencial.
+Conclusão resumida:
+Unidades com maior demanda tendem
+a apresentar maior criticidade operacional.
 """)
 
 fig4 = px.scatter(
@@ -644,6 +693,36 @@ st.plotly_chart(
     fig4,
     use_container_width=True
 )
+
+st.markdown("""
+### 📖 Detalhamento do Gráfico
+
+#### ✅ Indicador analisado
+Relação entre demanda assistencial e sobrecarga operacional.
+
+#### ✅ Cálculo utilizado
+- Eixo X → `total_atendimentos`
+- Eixo Y → `indice_sobrecarga`
+- Tamanho da bolha → `tempo_espera`
+- Cor → `pressao_leitos`
+
+#### ✅ Como interpretar
+- Bolhas maiores indicam maior tempo de espera.
+- Pontos mais altos representam maior sobrecarga.
+- Cores intensas indicam maior pressão estrutural.
+
+#### ✅ Ferramentas utilizadas
+- Pandas
+- Plotly Express
+- Streamlit
+- DuckDB
+""")
+
+# ============================================
+# GLOSSÁRIO SQL E PANDAS
+# ============================================
+
+st.markdown("---")
 
 # ============================================
 # RESUMO EXECUTIVO

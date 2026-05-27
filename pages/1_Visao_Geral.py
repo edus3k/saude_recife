@@ -363,8 +363,15 @@ Volume total de atendimentos realizados pelas unidades de saúde ao longo do tem
 
 #### ✅ Cálculo utilizado
 - Métrica principal: `total_atendimentos`
-- Função aplicada: `SUM()`
-- Agrupamento: Ano + Mês
+- Função aplicada: `SUM()` → Realiza a soma total dos valores.
+
+Exemplo:
+- Janeiro → 100 atendimentos
+- Fevereiro → 150 atendimentos
+- Março → 200 atendimentos
+
+Resultado:
+100 + 150 + 200 = 450 atendimentos
 
 #### ✅ Como interpretar
 - Crescimento da linha → aumento da demanda assistencial.
@@ -455,7 +462,10 @@ Quantidade média de profissionais disponíveis por unidade.
 
 #### ✅ Cálculo utilizado
 - Métrica principal: `total_profissionais`
-- Função aplicada: `MEAN()`
+- Função aplicada: `MEAN()` → Calcula a média dos valores.
+
+Exemplo:
+(20 + 30 + 40) ÷ 3 = 30 profissionais
 
 #### ✅ Como interpretar
 - Barras maiores indicam maior capacidade operacional.
@@ -524,10 +534,10 @@ st.markdown("""
 Relação entre demanda assistencial e desempenho operacional.
 
 #### ✅ Cálculo utilizado
-- Eixo X: `total_atendimentos`
-- Eixo Y: `score_qualidade`
-- Tamanho do ponto: `qtd_leitos`
-- Cor: `tempo_espera`
+- Eixo X → `total_atendimentos`
+- Eixo Y → `score_qualidade`
+- Tamanho do ponto → `qtd_leitos`
+- Cor → `tempo_espera`
 
 #### ✅ Como interpretar
 - Pontos mais altos → melhor qualidade operacional.
@@ -580,6 +590,12 @@ dos indicadores assistenciais para apoio à gestão
 e tomada de decisão estratégica.
 
 """)
+
+# ============================================
+# GLOSSÁRIO SQL E PANDAS
+# ============================================
+
+st.markdown("---")
 
 # ============================================
 # FOOTER

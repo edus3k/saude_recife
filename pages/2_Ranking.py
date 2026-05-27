@@ -397,13 +397,22 @@ Score médio de qualidade operacional das unidades de saúde.
 
 #### ✅ Cálculo utilizado
 - Métrica principal: `score_qualidade`
-- Função aplicada: `MEAN()`
+- Função aplicada: `MEAN()` → Calcula a média dos valores.
+
+Exemplo:
+- Unidade A → 70
+- Unidade B → 80
+- Unidade C → 90
+
+Resultado:
+(70 + 80 + 90) ÷ 3 = 80
 
 #### ✅ Como interpretar
 - Barras maiores representam melhor desempenho.
 - Scores elevados indicam maior eficiência operacional.
+- Scores baixos podem indicar sobrecarga.
 
-#### ✅ Ferramentas Python utilizadas
+#### ✅ Ferramentas utilizadas
 - Pandas
 - Plotly Express
 - Streamlit
@@ -501,13 +510,22 @@ Quantidade total de atendimentos realizados.
 
 #### ✅ Cálculo utilizado
 - Métrica principal: `total_atendimentos`
-- Função aplicada: `SUM()`
+- Função aplicada: `SUM()` → Realiza a soma total dos valores.
+
+Exemplo:
+- Janeiro → 100
+- Fevereiro → 150
+- Março → 200
+
+Resultado:
+100 + 150 + 200 = 450
 
 #### ✅ Como interpretar
 - Barras maiores representam maior demanda assistencial.
 - Valores elevados indicam maior utilização da unidade.
+- Altos volumes podem indicar pressão operacional.
 
-#### ✅ Ferramentas Python utilizadas
+#### ✅ Ferramentas utilizadas
 - Pandas
 - Plotly Express
 - Streamlit
@@ -605,13 +623,17 @@ Capacidade estrutural baseada em leitos.
 
 #### ✅ Cálculo utilizado
 - Métrica principal: `qtd_leitos`
-- Função aplicada: `MEAN()`
+- Função aplicada: `MEAN()` → Calcula a média dos valores.
+
+Exemplo:
+(50 + 60 + 70) ÷ 3 = 60
 
 #### ✅ Como interpretar
 - Barras maiores indicam maior capacidade hospitalar.
 - Menor quantidade pode indicar limitação estrutural.
+- Unidades maiores tendem a suportar maior demanda.
 
-#### ✅ Ferramentas Python utilizadas
+#### ✅ Ferramentas utilizadas
 - Pandas
 - Plotly Express
 - Streamlit
@@ -709,18 +731,29 @@ Quantidade média de médicos registrados.
 
 #### ✅ Cálculo utilizado
 - Métrica principal: `total_medicos`
-- Função aplicada: `MEAN()`
+- Função aplicada: `COUNT()` → Conta quantos registros existem.
+
+Exemplo:
+- 10 médicos cadastrados
+- Resultado → COUNT() = 10
 
 #### ✅ Como interpretar
 - Barras maiores representam maior disponibilidade médica.
 - Quantidades menores podem indicar sobrecarga.
+- Baixo número de médicos pode impactar o tempo de espera.
 
-#### ✅ Ferramentas Python utilizadas
+#### ✅ Ferramentas utilizadas
 - Pandas
 - Plotly Express
 - Streamlit
 - DuckDB
 """)
+
+# ============================================
+# GLOSSÁRIO SQL E PANDAS
+# ============================================
+
+st.markdown("---")
 
 # ============================================
 # RESUMO EXECUTIVO
@@ -754,6 +787,10 @@ A unidade com maior demanda assistencial foi
 
 O período analisado registrou
 aproximadamente {total_atend:,} atendimentos.
+
+A análise permite identificar possíveis
+situações de sobrecarga, eficiência operacional
+e capacidade estrutural das unidades.
 
 """)
 

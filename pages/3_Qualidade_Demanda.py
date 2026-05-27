@@ -349,10 +349,22 @@ st.markdown("""
 Relação entre demanda assistencial e qualidade operacional das unidades de saúde.
 
 #### ✅ Cálculo utilizado
-- Eixo X: `total_atendimentos`
-- Eixo Y: `score_qualidade`
-- Tamanho da bolha: `qtd_leitos`
-- Cor da bolha: `tempo_espera`
+- Eixo X → `total_atendimentos`
+- Eixo Y → `score_qualidade`
+- Tamanho da bolha → `qtd_leitos`
+- Cor da bolha → `tempo_espera`
+
+#### ✅ O que significa SUM()
+A função `SUM()` realiza a soma total dos valores.
+
+Exemplo:
+100 + 200 + 300 = 600
+
+#### ✅ O que significa MEAN()
+A função `MEAN()` calcula a média dos valores.
+
+Exemplo:
+(10 + 20 + 30) ÷ 3 = 20
 
 #### ✅ Como interpretar
 - Bolhas mais altas representam melhor qualidade operacional.
@@ -368,10 +380,10 @@ Foi possível identificar unidades com alta demanda e bom desempenho operacional
 A análise auxilia na identificação de possíveis gargalos operacionais e na necessidade de redistribuição de recursos.
 
 #### ✅ Ferramentas Python utilizadas
-- `Pandas`
-- `Plotly Express`
-- `Streamlit`
-- `DuckDB`
+- Pandas
+- Plotly Express
+- Streamlit
+- DuckDB
 """)
 
 # ============================================
@@ -459,9 +471,15 @@ st.markdown("""
 Tempo médio estimado de espera nas unidades de saúde.
 
 #### ✅ Cálculo utilizado
-- Métrica principal: `tempo_espera`
-- Função aplicada: `MEAN()`
-- Agrupamento: Unidade de Saúde
+- Métrica principal → `tempo_espera`
+- Função aplicada → `MEAN()`
+- Agrupamento → Unidade de Saúde
+
+#### ✅ O que significa MEAN()
+A função `MEAN()` calcula a média dos valores.
+
+Exemplo:
+(15 + 20 + 25) ÷ 3 = 20
 
 #### ✅ Como interpretar
 - Barras maiores indicam maior tempo de espera.
@@ -474,10 +492,10 @@ As unidades com maiores tempos de espera tendem a apresentar maior sobrecarga as
 O indicador evidencia possíveis dificuldades relacionadas à capacidade de atendimento e disponibilidade profissional.
 
 #### ✅ Ferramentas Python utilizadas
-- `Pandas`
-- `Plotly Express`
-- `Streamlit`
-- `DuckDB`
+- Pandas
+- Plotly Express
+- Streamlit
+- DuckDB
 """)
 
 # ============================================
@@ -565,9 +583,17 @@ st.markdown("""
 Nível de pressão operacional sobre os leitos disponíveis.
 
 #### ✅ Cálculo utilizado
-- Métrica principal: `pressao_leitos`
-- Função aplicada: `MEAN()`
-- Agrupamento: Unidade de Saúde
+- Métrica principal → `pressao_leitos`
+- Função aplicada → `MEAN()`
+- Agrupamento → Unidade de Saúde
+
+#### ✅ O que significa GROUP BY
+Agrupa os dados por categorias.
+
+Neste projeto:
+- unidade
+- ano
+- mês
 
 #### ✅ Como interpretar
 - Barras maiores indicam maior ocupação e pressão assistencial.
@@ -580,10 +606,10 @@ O gráfico evidencia quais unidades apresentam maior utilização da estrutura h
 Valores elevados podem indicar risco de superlotação e necessidade de ampliação da capacidade assistencial.
 
 #### ✅ Ferramentas Python utilizadas
-- `Pandas`
-- `Plotly Express`
-- `Streamlit`
-- `DuckDB`
+- Pandas
+- Plotly Express
+- Streamlit
+- DuckDB
 """)
 
 # ============================================
@@ -670,9 +696,16 @@ st.markdown("""
 Carga média de pacientes atendidos por médico.
 
 #### ✅ Cálculo utilizado
-- Métrica principal: `pacientes_por_medico`
-- Função aplicada: `MEAN()`
-- Agrupamento: Unidade de Saúde
+- Métrica principal → `pacientes_por_medico`
+- Função aplicada → `MEAN()`
+- Agrupamento → Unidade de Saúde
+
+#### ✅ O que significa COUNT()
+A função `COUNT()` conta quantos registros existem.
+
+Exemplo:
+- 10 médicos cadastrados
+- Resultado → COUNT() = 10
 
 #### ✅ Como interpretar
 - Barras maiores indicam maior carga assistencial médica.
@@ -685,11 +718,17 @@ A análise permite identificar unidades com maior carga assistencial médica.
 Valores elevados podem representar sobrecarga profissional e impacto na qualidade do atendimento prestado.
 
 #### ✅ Ferramentas Python utilizadas
-- `Pandas`
-- `Plotly Express`
-- `Streamlit`
-- `DuckDB`
+- Pandas
+- Plotly Express
+- Streamlit
+- DuckDB
 """)
+
+# ============================================
+# GLOSSÁRIO SQL E PANDAS
+# ============================================
+
+st.markdown("---")
 
 # ============================================
 # RESUMO EXECUTIVO
@@ -725,6 +764,11 @@ de aproximadamente {tempo_medio} minutos.
 
 A média assistencial registrada foi de
 {pacientes_medico} pacientes por médico.
+
+A análise evidencia a importância do
+monitoramento contínuo dos indicadores
+assistenciais para apoio à gestão pública
+e tomada de decisão estratégica.
 
 """)
 

@@ -7,9 +7,9 @@ import os
 # PASTAS - PAPE - PFPE - STPE
 # ---------------------------------------
 
-input_folder = "../data/dados_intermediarios/PFPE"
+input_folder = "../data/dados_intermediarios/STPE"
 
-output_folder = "../data/dados_convertidos/PFPE"
+output_folder = "../data/dados_convertidos/STPE"
 
 os.makedirs(output_folder, exist_ok=True)
 

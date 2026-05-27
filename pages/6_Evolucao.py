@@ -21,14 +21,25 @@ from utils.constantes import (
 
 st.set_page_config(
     page_title="Evolução Temporal",
+    page_icon="📅",
     layout="wide"
 )
 
 st.title("📅 Evolução Temporal")
 
 st.markdown("""
-Análise temporal dos indicadores assistenciais
+# Análise Temporal dos Indicadores Assistenciais
+
+Esta página apresenta a evolução histórica
+dos principais indicadores operacionais
 das unidades de saúde do Recife.
+
+## Indicadores analisados
+- Atendimentos realizados
+- Qualidade operacional
+- Tempo de espera
+- Estrutura profissional
+- Pressão assistencial
 """)
 
 # ============================================
@@ -151,7 +162,7 @@ def carregar_dados():
 dados = carregar_dados()
 
 # ============================================
-# VALIDAR
+# VALIDAR DADOS
 # ============================================
 
 if dados.empty:
@@ -160,12 +171,14 @@ if dados.empty:
     st.stop()
 
 # ============================================
-# NOME UNIDADE
+# NOME DAS UNIDADES
 # ============================================
 
 dados["nome_unidade"] = (
 
-    "CNES " +
+    "CNES "
+
+    +
 
     dados["unidade"]
     .astype(str)
@@ -173,16 +186,37 @@ dados["nome_unidade"] = (
 )
 
 # ============================================
-# MÉTRICAS
+# CALCULAR MÉTRICAS
 # ============================================
 
 dados = calcular_metricas(dados)
 
 # ============================================
+# CRIAR PERÍODO
+# ============================================
+
+dados["periodo"] = (
+
+    dados["ano"]
+    .astype(str)
+
+    +
+
+    "-"
+
+    +
+
+    dados["mes"]
+    .astype(str)
+    .str.zfill(2)
+
+)
+
+# ============================================
 # SIDEBAR
 # ============================================
 
-st.sidebar.header("🎛️ Filtros")
+st.sidebar.header("🎛️ Filtros Temporais")
 
 anos = sorted(
     dados["ano"]
@@ -221,7 +255,7 @@ unidade_select = st.sidebar.multiselect(
 )
 
 # ============================================
-# FILTRAR
+# FILTRAR DADOS
 # ============================================
 
 dados = dados[
@@ -239,31 +273,12 @@ dados = dados[
 ]
 
 # ============================================
-# CRIAR PERÍODO
-# ============================================
-
-dados["periodo"] = (
-
-    dados["ano"]
-    .astype(str)
-
-    + "-"
-
-    +
-
-    dados["mes"]
-    .astype(str)
-    .str.zfill(2)
-
-)
-
-# ============================================
-# KPIS
+# KPIs
 # ============================================
 
 st.markdown("---")
 
-st.subheader("📊 Indicadores Temporais")
+st.subheader("📊 Indicadores Gerais")
 
 col1, col2, col3, col4 = st.columns(4)
 
@@ -284,11 +299,11 @@ col3.metric(
 
 col4.metric(
     "Tempo Espera",
-    f"{dados['tempo_espera'].mean():.1f}"
+    f"{dados['tempo_espera'].mean():.1f} min"
 )
 
 # ============================================
-# EVOLUÇÃO ATENDIMENTOS
+# EVOLUÇÃO DOS ATENDIMENTOS
 # ============================================
 
 st.markdown("---")
@@ -296,14 +311,14 @@ st.markdown("---")
 st.subheader("📈 Evolução dos Atendimentos")
 
 st.info("""
-Este gráfico apresenta a evolução mensal da quantidade
-de atendimentos realizados pelas unidades de saúde.
+Este gráfico apresenta a evolução temporal
+da quantidade total de atendimentos realizados.
 
 A análise permite identificar:
-- crescimento da demanda assistencial;
-- períodos de maior pressão operacional;
-- sazonalidade dos atendimentos;
-- comportamento histórico da rede de saúde.
+- crescimento da demanda;
+- sazonalidade;
+- períodos críticos;
+- pressão assistencial.
 """)
 
 evolucao_atendimentos = (
@@ -336,7 +351,7 @@ fig1 = px.line(
 
     template="plotly_white",
 
-    title="Evolução Atendimentos"
+    title="Evolução dos Atendimentos"
 
 )
 
@@ -357,32 +372,22 @@ st.plotly_chart(
     use_container_width=True
 )
 
-st.success(f"""
-Conclusão resumida:
-
-O período analisado apresentou aproximadamente
-{int(evolucao_atendimentos['total_atendimentos'].sum()):,} atendimentos.
-
-A tendência observada permite avaliar o crescimento
-da demanda assistencial ao longo do tempo.
-""")
-
 # ============================================
 # EVOLUÇÃO QUALIDADE
 # ============================================
 
 st.markdown("---")
 
-st.subheader("🏥 Evolução Qualidade")
+st.subheader("🏥 Evolução da Qualidade")
 
 st.info("""
-Este gráfico demonstra a evolução do score médio
-de qualidade operacional das unidades de saúde.
+Este gráfico apresenta a evolução
+do score médio de qualidade operacional.
 
-O indicador auxilia na avaliação:
+O indicador auxilia na análise:
 - da eficiência operacional;
-- da estabilidade dos atendimentos;
-- do impacto da demanda na qualidade assistencial.
+- da estabilidade dos serviços;
+- do impacto da demanda.
 """)
 
 evolucao_qualidade = (
@@ -415,7 +420,7 @@ fig2 = px.line(
 
     template="plotly_white",
 
-    title="Evolução Qualidade"
+    title="Evolução da Qualidade"
 
 )
 
@@ -436,32 +441,22 @@ st.plotly_chart(
     use_container_width=True
 )
 
-st.success(f"""
-Conclusão resumida:
-
-O score médio operacional registrado foi de
-{round(evolucao_qualidade['score_qualidade'].mean(), 2)} pontos.
-
-Os resultados demonstram o comportamento da qualidade
-operacional ao longo do período analisado.
-""")
-
 # ============================================
-# EVOLUÇÃO ESPERA
+# EVOLUÇÃO TEMPO ESPERA
 # ============================================
 
 st.markdown("---")
 
-st.subheader("⏱️ Evolução Tempo Espera")
+st.subheader("⏱️ Evolução do Tempo de Espera")
 
 st.info("""
-Este gráfico apresenta a evolução estimada
-do tempo médio de espera assistencial.
+Este gráfico apresenta a evolução
+do tempo médio estimado de espera.
 
 A análise permite identificar:
 - períodos de maior sobrecarga;
 - gargalos operacionais;
-- impacto da demanda no atendimento.
+- impacto da demanda.
 """)
 
 evolucao_espera = (
@@ -494,7 +489,7 @@ fig3 = px.line(
 
     template="plotly_white",
 
-    title="Evolução Tempo Espera"
+    title="Evolução do Tempo de Espera"
 
 )
 
@@ -515,32 +510,22 @@ st.plotly_chart(
     use_container_width=True
 )
 
-st.success(f"""
-Conclusão resumida:
-
-O tempo médio estimado de espera foi de
-{round(evolucao_espera['tempo_espera'].mean(), 1)} minutos.
-
-O comportamento temporal do indicador auxilia
-na identificação de períodos críticos da operação.
-""")
-
 # ============================================
 # EVOLUÇÃO PROFISSIONAIS
 # ============================================
 
 st.markdown("---")
 
-st.subheader("👨‍⚕️ Evolução Profissionais")
+st.subheader("👨‍⚕️ Evolução dos Profissionais")
 
 st.info("""
-Este gráfico apresenta a evolução da quantidade
-média de profissionais registrados nas unidades.
+Este gráfico apresenta a evolução
+da quantidade média de profissionais.
 
 O indicador auxilia na análise:
 - da capacidade operacional;
-- do crescimento das equipes;
-- do suporte assistencial disponível.
+- da estrutura assistencial;
+- do crescimento das equipes.
 """)
 
 evolucao_profissionais = (
@@ -571,7 +556,7 @@ fig4 = px.area(
 
     template="plotly_white",
 
-    title="Evolução Profissionais"
+    title="Evolução dos Profissionais"
 
 )
 
@@ -592,18 +577,8 @@ st.plotly_chart(
     use_container_width=True
 )
 
-st.success(f"""
-Conclusão resumida:
-
-A média registrada foi de
-{round(evolucao_profissionais['total_profissionais'].mean(), 2)} profissionais.
-
-A evolução da equipe operacional demonstra
-a capacidade assistencial disponível ao longo do período.
-""")
-
 # ============================================
-# COMPARAÇÃO UNIDADES
+# COMPARAÇÃO ENTRE UNIDADES
 # ============================================
 
 st.markdown("---")
@@ -611,13 +586,13 @@ st.markdown("---")
 st.subheader("📊 Comparação entre Unidades")
 
 st.info("""
-Este gráfico compara o comportamento temporal
-dos atendimentos entre as unidades de saúde.
+Este gráfico compara o comportamento
+dos atendimentos entre as unidades.
 
-A análise permite:
-- identificar unidades mais demandadas;
-- comparar evolução operacional;
-- avaliar pressão assistencial entre unidades.
+Permite identificar:
+- unidades mais demandadas;
+- crescimento operacional;
+- diferenças assistenciais.
 """)
 
 comparativo = (
@@ -650,7 +625,7 @@ fig5 = px.line(
 
     template="plotly_white",
 
-    title="Comparativo Unidades"
+    title="Comparativo entre Unidades"
 
 )
 
@@ -671,15 +646,36 @@ st.plotly_chart(
     use_container_width=True
 )
 
-st.success("""
-Conclusão resumida:
+# ============================================
+# TABELA ANALÍTICA
+# ============================================
 
-A comparação entre unidades demonstra diferenças
-no volume de demanda assistencial ao longo do tempo.
+st.markdown("---")
 
-As unidades com linhas mais elevadas apresentam
-maior pressão operacional e maior fluxo de atendimentos.
-""")
+st.subheader("📋 Base Analítica")
+
+tabela = (
+
+    dados[[
+        "periodo",
+        "nome_unidade",
+        "total_atendimentos",
+        "score_qualidade",
+        "tempo_espera",
+        "total_profissionais",
+        "qtd_leitos"
+    ]]
+
+    .sort_values(
+        ["periodo", "nome_unidade"]
+    )
+
+)
+
+st.dataframe(
+    tabela,
+    use_container_width=True
+)
 
 # ============================================
 # RESUMO EXECUTIVO
@@ -716,7 +712,7 @@ foi de {media_espera} minutos.
 
 Os resultados demonstram a evolução
 dos indicadores assistenciais da rede
-de saúde do Recife ao longo do período analisado.
+de saúde do Recife ao longo do período.
 
 """)
 
@@ -725,5 +721,5 @@ de saúde do Recife ao longo do período analisado.
 # ============================================
 
 st.success(
-    "✅ Painel de evolução temporal carregado"
+    "✅ Painel de evolução temporal carregado com sucesso"
 )

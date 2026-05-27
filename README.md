@@ -258,7 +258,7 @@ Disciplina: **TÓPICOS DE BIG DATA EM PYTHON**
 
 Orientador: **Davi Câmara**
 
-Instituição: **Universidade Católica de Pernambuco — UNICAP**
+Instituição: **Unidade Estácio Abdias de Carvalho - Recife/PE**
 
 ---
 

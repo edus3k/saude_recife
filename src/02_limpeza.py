@@ -7,7 +7,7 @@ import os
 
 
 # ---------------------------------------
-# PASTAS
+# PASTAS - PAPE - PFPE - STPE
 # ---------------------------------------
 
 input_folder = "../data/dados_convertidos/STPE"
